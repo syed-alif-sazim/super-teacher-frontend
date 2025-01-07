@@ -7,6 +7,7 @@ const config = {
     "./shared/components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    "./modules/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -19,6 +20,7 @@ const config = {
     },
     extend: {
       colors: {
+        'custom-green' :"#25ac7a",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
