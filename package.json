@@ -14,7 +14,8 @@
     "prettier:format": "npx prettier --write ./",
     "prepare": "husky install",
     "test": "jest",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "create-module": "create_module() { mkdir -p ./modules/$1/{components,containers,hooks}; }; create_module"
   },
   "lint-staged": {
     "./**/*.{ts,tsx}": "sh ./scripts/lint-filter.sh"
