@@ -42,7 +42,7 @@ const StudentForm = () => {
               <FormItem className="flex-1">
                 <FormLabel>First Name</FormLabel>
                 <FormControl >
-                  <Input placeholder="Enter your first name" {...field} className="bg-white" />
+                  <Input placeholder="Enter your first name" {...field} className="bg-white rounded-[5px] placeholder-gray-500"  />
                 </FormControl>
                 {errors["firstName"] && (
                   <FormMessage className="text-red-500 mt-1">
@@ -59,7 +59,7 @@ const StudentForm = () => {
               <FormItem className="flex-1">
                 <FormLabel>Last Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your last name" {...field} className="bg-white" />
+                  <Input placeholder="Enter your last name" {...field} className="bg-white rounded-[5px] placeholder-gray-500"  />
                 </FormControl>
                 {errors["lastName"] && (
                   <FormMessage className="text-red-500 mt-1">
@@ -104,7 +104,7 @@ const StudentForm = () => {
               <FormItem className="flex-1">
                 <FormLabel>Address</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your address" {...field} className="bg-white" />
+                  <Input placeholder="Enter your address" {...field} className="bg-white rounded-[5px] placeholder-gray-500"  />
                 </FormControl>
                 {errors["address"] && (
                   <FormMessage className="text-red-500 mt-1">
@@ -121,7 +121,7 @@ const StudentForm = () => {
               <FormItem className="flex-1">
                 <FormLabel>Phone Number</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your phone number" {...field} className="bg-white" />
+                  <Input placeholder="Enter your phone number" {...field} className="bg-white rounded-[5px] placeholder-gray-500"  />
                 </FormControl>
                 {errors["phoneNumber"] && (
                   <FormMessage className="text-red-500 mt-1">
@@ -227,7 +227,7 @@ const StudentForm = () => {
                   <FormItem className="flex-1">
                     <FormLabel>Degree Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your degree name" {...field} className="bg-white" />
+                      <Input placeholder="Enter your degree name" {...field} className="bg-white rounded-[5px] placeholder-gray-500"  />
                     </FormControl>
                   {errors["degreeName"] && (
                     <FormMessage className="text-red-500 mt-1">
@@ -244,7 +244,7 @@ const StudentForm = () => {
                   <FormItem className="flex-1">
                     <FormLabel>Semester/Year</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your semester/year" {...field} className="bg-white" />
+                      <Input placeholder="Enter your semester/year" {...field} className="bg-white rounded-[5px] placeholder-gray-500"  />
                     </FormControl>
                     {errors["semesterYear"] && (
                       <FormMessage className="text-red-500 mt-1">
@@ -299,7 +299,7 @@ const StudentForm = () => {
               <FormItem className="flex-1">
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your email" {...field} className="bg-white" />
+                  <Input placeholder="Enter your email" {...field} className="bg-white rounded-[5px] placeholder-gray-500"  />
                 </FormControl>
                 {errors["email"] && (
                   <FormMessage className="text-red-500 mt-1">

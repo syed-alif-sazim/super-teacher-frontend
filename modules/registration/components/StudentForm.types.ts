@@ -1,4 +1,4 @@
-import { ERoles, EGender, EDegree, EEducationLevel, EMedium, ECollegeClass, ESchoolClass } from "@/shared/typedefs"
+import {EGender, EDegree, EEducationLevel, EMedium, ECollegeClass, ESchoolClass } from "@/shared/typedefs"
 
 export type TStudentForm= {
     firstName: string;
@@ -15,4 +15,4 @@ export type TStudentForm= {
     email: string;
     password: string;
     confirmPassword: string;
-  };
+};
