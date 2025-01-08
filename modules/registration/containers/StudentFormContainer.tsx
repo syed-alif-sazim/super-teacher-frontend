@@ -1,12 +1,12 @@
-import React from 'react'
-import StudentForm from '../components/StudentForm'
+import React from "react";
+import StudentForm from "../components/StudentForm";
 
 const StudentFormContainer = () => {
   return (
     <div className="flex justify-center">
-         <StudentForm/>
+      <StudentForm />
     </div>
-  )
-}
+  );
+};
 
-export default StudentFormContainer
+export default StudentFormContainer;

@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background-color:  #151b32;
-    color: #25ac7a;
+body {
+  background-color: #151b32;
+  color: #25ac7a;
 }
 
 input {
-    color: black;
+  color: black;
 }

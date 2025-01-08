@@ -20,7 +20,7 @@ const config = {
     },
     extend: {
       colors: {
-        'custom-green' :"#25ac7a",
+        "custom-green": "#25ac7a",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -54,6 +54,9 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        screens:{
+          'xs': '400px'
+        }
       },
       borderRadius: {
         lg: "var(--radius)",

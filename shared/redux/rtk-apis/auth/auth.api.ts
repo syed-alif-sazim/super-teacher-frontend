@@ -13,12 +13,12 @@ const authApi = projectApi.injectEndpoints({
       transformResponse: (response: TApiResponse<TLoginResponse>) => response.data,
     }),
     register: builder.mutation({
-      query: (user: IUser)=>({
-        url : 'auth/register',
-        method:'POST',
-        body: user
-      })
-    })
+      query: (user: IUser) => ({
+        url: "auth/register",
+        method: "POST",
+        body: user,
+      }),
+    }),
   }),
   overrideExisting: false,
 });
