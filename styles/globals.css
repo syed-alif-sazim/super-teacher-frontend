@@ -10,3 +10,21 @@ body{
 input {
     color: black;
 }
+
+@layer components {
+    .btn-landing-page {
+        @apply text-custom-green px-4 py-2 border-custom-green border-2 border-solid hover:text-white transition-all;
+    }
+    .welcome-landing-page {
+        @apply text-center text-white text-4xl lg:text-6xl font-bold mb-3;
+    }
+    .slogan-landing-page {
+        @apply text-center text-white md:text-xl lg:text-2xl mb-3;
+    }
+    .dialog-student-box{
+        @apply mb-2 sm:mb-0 text-xl flex items-center justify-center w-[100%] sm:w-[48%] h-[200px] sm:h-[300px] border-2 border-black py-6 cursor-pointer font-bold;
+    }
+    .dialog-teacher-box{
+        @apply text-xl flex items-center justify-center  w-[100%] sm:w-[48%] h-[200px] sm:h-[300px] border-2 border-black text-center py-6 cursor-pointer font-bold;
+    }
+}
