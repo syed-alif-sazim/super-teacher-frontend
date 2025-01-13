@@ -7,15 +7,20 @@ import {
   FormLabel,
   FormMessage,
   Input,
-  Button
+  Button,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/shared/components/shadui"
 import {EGender, EDegree, EEducationLevel, EMedium, ECollegeClass, ESchoolClass } from "@/shared/typedefs"
-import CustomSelectInput from "@/shared/components/Form/CustomSelectInput"
 import { PasswordInput } from "@/shared/components/Form/PasswordInput"
 import { StudentFormSchema } from "./StudentForm.schema"
 import { zodResolver } from "@hookform/resolvers/zod";
 import useSubmitStudentForm from "../hooks/useSubmitStudentForm"
 import { TStudentForm } from "./StudentForm.types"
+import { cn } from "@/lib/utils"
 
 const StudentForm = () => {
   const form = useForm<TStudentForm>({
@@ -40,15 +45,13 @@ const StudentForm = () => {
             name="firstName"
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel>First Name</FormLabel>
+                <FormLabel className='text-custom-green'>First Name</FormLabel>
                 <FormControl >
-                  <Input placeholder="Enter your first name" {...field} className="bg-white rounded-[5px] placeholder-gray-500"  />
+                  <Input placeholder="Enter your first name" {...field} className="bg-white rounded-[5px]"  />
                 </FormControl>
-                {errors["firstName"] && (
-                  <FormMessage className="text-red-500 mt-1">
-                    {errors["firstName"]?.message?.toString()}
-                  </FormMessage>
-                )}
+                <FormMessage className={cn("text-red-500 mt-1 h-1",!errors["firstName"]? " opacity-0" :"" )} >
+                  {errors["firstName"]?.message?.toString() || " "}
+                </FormMessage>
               </FormItem>
             )}
           />
@@ -57,44 +60,42 @@ const StudentForm = () => {
             name="lastName"
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel>Last Name</FormLabel>
+                <FormLabel className='text-custom-green'>Last Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your last name" {...field} className="bg-white rounded-[5px] placeholder-gray-500"  />
+                  <Input placeholder="Enter your last name" {...field} className="bg-white rounded-[5px]"  />
                 </FormControl>
-                {errors["lastName"] && (
-                  <FormMessage className="text-red-500 mt-1">
-                    {errors["lastName"]?.message?.toString()}
-                  </FormMessage>
-                )}
+                <FormMessage className={cn("text-red-500 mt-1 h-1",!errors["lastName"]? " opacity-0" :"" )} >
+                  {errors["lastName"]?.message?.toString() || " "}
+                </FormMessage>
               </FormItem>
             )}
           />
           <FormField
-            control={form.control}
-            name="gender"
-            render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel>Gender</FormLabel>
-                <FormControl >
-                  <CustomSelectInput
-                    placeholder="Select your gender"
-                    value={field.value}
-                    onChange={field.onChange}
-                    options={Object.values(EGender).map(gender => ({ label: gender, value: gender }))}
-                    isError={false}
-                    buttonClassname="bg-white text-black"
-                    dropdownClassname="bg-white text-black"
-                  />
-                </FormControl>
-                {errors["gender"] && (
-                  <FormMessage className="text-red-500 mt-1">
-                    {errors["gender"]?.message?.toString()}
+              control={form.control}
+              name="gender"
+              render={({ field }) => (
+                <FormItem className="flex-1">
+                  <FormLabel className="text-custom-green">Gender</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
+                    <FormControl>
+                      <SelectTrigger className="bg-white text-black">
+                        <SelectValue placeholder="Select your gender" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent className="bg-white text-black">
+                      {Object.values(EGender).map((gender) => (
+                        <SelectItem key={gender} value={gender} className="focus:bg-white focus:text-black">
+                          {gender}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage className={cn("text-red-500 mt-1 h-1",!errors["gender"]? " opacity-0" :"" )} >
+                    {errors["gender"]?.message?.toString() || " "}
                   </FormMessage>
-                )}
-              </FormItem>
-            )}
-          />
-
+                </FormItem>
+              )}
+            />
         </div>
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-4">
           <FormField
@@ -102,15 +103,13 @@ const StudentForm = () => {
             name="address"
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel>Address</FormLabel>
+                <FormLabel className='text-custom-green'>Address</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your address" {...field} className="bg-white rounded-[5px] placeholder-gray-500"  />
+                  <Input placeholder="Enter your address" {...field} className="bg-white rounded-[5px]"  />
                 </FormControl>
-                {errors["address"] && (
-                  <FormMessage className="text-red-500 mt-1">
-                    {errors["address"]?.message?.toString()}
-                  </FormMessage>
-                )}
+                <FormMessage className={cn("text-red-500 mt-1 h-1",!errors["address"]? " opacity-0" :"" )} >
+                  {errors["address"]?.message?.toString() || " "}
+                </FormMessage>
               </FormItem>
             )}
           />
@@ -119,46 +118,44 @@ const StudentForm = () => {
             name="phoneNumber"
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel>Phone Number</FormLabel>
+                <FormLabel className='text-custom-green'>Phone Number</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your phone number" {...field} className="bg-white rounded-[5px] placeholder-gray-500"  />
+                  <Input placeholder="Enter your phone number" {...field} className="bg-white rounded-[5px]"  />
                 </FormControl>
-                {errors["phoneNumber"] && (
-                  <FormMessage className="text-red-500 mt-1">
-                    {errors["phoneNumber"]?.message?.toString()}
-                  </FormMessage>
-                )}
+                <FormMessage className={cn("text-red-500 mt-1",!errors["phoneNumber"]? " opacity-0" :"" )} >
+                  {errors["phoneNumber"]?.message?.toString() || " "}
+                </FormMessage>
               </FormItem>
             )}
           />
         </div>
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-4">
-          <FormField
-            control={form.control}
-            name="educationLevel"
-            render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel>Education Level</FormLabel>
+        <FormField
+          control={form.control}
+          name="educationLevel"
+          render={({ field }) => (
+            <FormItem className="flex-1">
+              <FormLabel className="text-custom-green">Education Level</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
                 <FormControl>
-                  <CustomSelectInput
-                    placeholder="Select your education level"
-                    value={field.value}
-                    onChange={field.onChange}
-                    options={Object.values(EEducationLevel).map(level => ({ label: level, value: level }))}
-                    isError={false}
-                    buttonClassname="bg-white text-black"
-                    dropdownClassname="bg-white text-black"
-                  />
+                  <SelectTrigger className="bg-white text-black">
+                    <SelectValue placeholder="Select your education level" />
+                  </SelectTrigger>
                 </FormControl>
-                {errors["educationLevel"] && (
-                  <FormMessage className="text-red-500 mt-1">
-                    {errors["educationLevel"]?.message?.toString()}
-                  </FormMessage>
-                )}
-              </FormItem>
-            )}
-          />
-
+                <SelectContent className="bg-white text-black">
+                  {Object.values(EEducationLevel).map((level) => (
+                    <SelectItem key={level} value={level} className="focus:bg-white focus:text-black">
+                      {level}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage className={cn("text-red-500 mt-1 h-1", !errors["educationLevel"] ? " opacity-0" : "")}>
+                {errors["educationLevel"]?.message?.toString() || " "}
+              </FormMessage>
+            </FormItem>
+          )}
+        />
         {educationLevel && (
           <>
             {educationLevel === EEducationLevel.School || educationLevel === EEducationLevel.College ? (
@@ -167,23 +164,24 @@ const StudentForm = () => {
                 name="medium"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel>Medium</FormLabel>
-                    <FormControl>
-                      <CustomSelectInput
-                        placeholder="Select your medium"
-                        value={field.value}
-                        onChange={field.onChange}
-                        options={Object.values(EMedium).map(medium => ({ label: medium, value: medium }))}
-                        isError={false}
-                        buttonClassname="bg-white text-black"
-                        dropdownClassname="bg-white text-black"
-                      />
-                    </FormControl>
-                    {errors["medium"] && (
-                      <FormMessage className="text-red-500 mt-1">
-                        {errors["medium"]?.message?.toString()}
-                      </FormMessage>
-                    )}
+                    <FormLabel className="text-custom-green">Medium</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
+                      <FormControl>
+                        <SelectTrigger className="bg-white text-black">
+                          <SelectValue placeholder="Select your medium" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className="bg-white text-black">
+                        {Object.values(EMedium).map((medium) => (
+                          <SelectItem key={medium} value={medium} className="focus:bg-white focus:text-black">
+                            {medium}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage className={cn("text-red-500 mt-1 h-1", !errors["medium"] ? " opacity-0" : "")}>
+                      {errors["medium"]?.message?.toString() || " "}
+                    </FormMessage>
                   </FormItem>
                 )}
               />
@@ -193,23 +191,24 @@ const StudentForm = () => {
                 name="degree"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel>Bachelor/Master</FormLabel>
-                    <FormControl>
-                      <CustomSelectInput
-                        placeholder="Select your degree"
-                        value={field.value}
-                        onChange={field.onChange}
-                        options={Object.values(EDegree).map(degree => ({ label: degree, value: degree }))}
-                        isError={false}
-                        buttonClassname="bg-white text-black"
-                        dropdownClassname="bg-white text-black"
-                      />
-                    </FormControl>
-                    {errors["degree"] && (
-                      <FormMessage className="text-red-500 mt-1">
-                        {errors["degree"]?.message?.toString()}
-                      </FormMessage>
-                    )}
+                    <FormLabel className="text-custom-green">Bachelor/Master</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
+                      <FormControl>
+                        <SelectTrigger className="bg-white text-black">
+                          <SelectValue placeholder="Select your degree" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className="bg-white text-black">
+                        {Object.values(EDegree).map((degree) => (
+                          <SelectItem key={degree} value={degree} className="focus:bg-grey-500 focus:text-black">
+                            {degree}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage className={cn("text-red-500 mt-1 h-1", !errors["degree"] ? " opacity-0" : "")}>
+                      {errors["degree"]?.message?.toString() || " "}
+                    </FormMessage>
                   </FormItem>
                 )}
               />
@@ -217,23 +216,21 @@ const StudentForm = () => {
           </>
         )}
         </div>
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-4">
+        
           {educationLevel === EEducationLevel.University && (
-            <>
+            <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-4">
               <FormField
                 control={form.control}
                 name="degreeName"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel>Degree Name</FormLabel>
+                    <FormLabel className='text-custom-green'>Degree Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your degree name" {...field} className="bg-white rounded-[5px] placeholder-gray-500"  />
+                      <Input placeholder="Enter your degree name" {...field} className="bg-white rounded-[5px]"  />
                     </FormControl>
-                  {errors["degreeName"] && (
-                    <FormMessage className="text-red-500 mt-1">
-                      {errors["degreeName"]?.message?.toString()}
+                    <FormMessage className={cn("text-red-500 mt-1 h-1",!errors["degreeName"]? " opacity-0" :"" )} >
+                      {errors["degreeName"]?.message?.toString() || " "}
                     </FormMessage>
-                  )}
                     </FormItem>
                   )}
               />
@@ -242,70 +239,72 @@ const StudentForm = () => {
                 name="semesterYear"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel>Semester/Year</FormLabel>
+                    <FormLabel className='text-custom-green'>Semester/Year</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your semester/year" {...field} className="bg-white rounded-[5px] placeholder-gray-500"  />
+                      <Input placeholder="Enter your semester/year" {...field} className="bg-white rounded-[5px]"  />
                     </FormControl>
-                    {errors["semesterYear"] && (
-                      <FormMessage className="text-red-500 mt-1">
-                        {errors["semesterYear"]?.message?.toString()}
-                      </FormMessage>
-                    )}
+                    <FormMessage className={cn("text-red-500 mt-1 h-1",!errors["semesterYear"]? " opacity-0" :"" )} >
+                      {errors["semesterYear"]?.message?.toString() || " "}
+                    </FormMessage>
                       </FormItem>
                     )}
               />
-            </>
+            </div>
           )}
 
           {(educationLevel === EEducationLevel.School || educationLevel === EEducationLevel.College) && (
+            <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-4">
               <FormField
-              control={form.control}
-              name="class"
-              render={({ field }) => (
-                <FormItem className="flex-1">
-                  <FormLabel>Class</FormLabel>
-                  <FormControl>
-                    <CustomSelectInput
-                      placeholder="Select your class"
-                      value={field.value}
-                      onChange={field.onChange}
-                      options={
-                        educationLevel === EEducationLevel.School
-                          ? Object.values(ESchoolClass).map(grade => ({ label: grade, value: grade }))
+                control={form.control}
+                name="grade"
+                render={({ field }) => (
+                  <FormItem className="flex-1">
+                    <FormLabel className="text-custom-green">Class</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
+                      <FormControl>
+                        <SelectTrigger className="bg-white text-black">
+                          <SelectValue placeholder="Select your class" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className="bg-white text-black">
+                        {educationLevel === EEducationLevel.School
+                          ? Object.values(ESchoolClass).map((grade) => (
+                              <SelectItem key={grade} value={grade} className="focus:bg-grey-500 focus:text-black">
+                                {grade}
+                              </SelectItem>
+                            ))
                           : educationLevel === EEducationLevel.College
-                          ? Object.values(ECollegeClass).map(grade => ({ label: grade, value: grade }))
-                          : []
-                      }
-                      isError={false}
-                      buttonClassname="bg-white text-black"
-                      dropdownClassname="bg-white text-black"
-                    />
-                  </FormControl>
-                  {errors["medium"] && (
-                    <FormMessage className="text-red-500 mt-1">
-                      {errors["medium"]?.message?.toString()}
-                    </FormMessage>
-                  )}
-                </FormItem>
-              )}
-            />
+                          ? Object.values(ECollegeClass).map((grade) => (
+                              <SelectItem key={grade} value={grade} className="focus:bg-grey-500 focus:text-black">
+                                {grade}
+                              </SelectItem>
+                            ))
+                          : null}
+                      </SelectContent>
+                    </Select>
+                    {errors["grade"] && (
+                      <FormMessage className="text-red-500 mt-1">
+                        {errors["grade"]?.message?.toString()}
+                      </FormMessage>
+                    )}
+                  </FormItem>
+                )}
+              />
+            </div>
           )}
-        </div>
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-4">
           <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel>Email</FormLabel>
+                <FormLabel className='text-custom-green'>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your email" {...field} className="bg-white rounded-[5px] placeholder-gray-500"  />
+                  <Input placeholder="Enter your email" {...field} className="bg-white rounded-[5px]"  />
                 </FormControl>
-                {errors["email"] && (
-                  <FormMessage className="text-red-500 mt-1">
-                    {errors["email"]?.message?.toString()}
-                  </FormMessage>
-                )}
+                <FormMessage className={cn("text-red-500 mt-1 h-1",!errors["email"]? " opacity-0" :"" )} >
+                  {errors["email"]?.message?.toString() || " "}
+                </FormMessage>
               </FormItem>
             )}
           />
@@ -316,7 +315,7 @@ const StudentForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel>Password</FormLabel>
+                <FormLabel className='text-custom-green'>Password</FormLabel>
                 <FormControl>
                   <PasswordInput
                     placeholder="Enter your password"
@@ -325,11 +324,9 @@ const StudentForm = () => {
                     isError={false}
                   />
                 </FormControl>
-                {errors["password"] && (
-                  <FormMessage className="text-red-500 mt-1">
-                    {errors["password"]?.message?.toString()}
-                  </FormMessage>
-                )}
+                <FormMessage className={cn("text-red-500 mt-1",!errors["password"]? " opacity-0" :"" )} >
+                  {errors["password"]?.message?.toString() || " "}
+                </FormMessage>
               </FormItem>
             )}
           />
@@ -339,7 +336,7 @@ const StudentForm = () => {
             name="confirmPassword"
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel>Confirm Password</FormLabel>
+                <FormLabel className='text-custom-green'>Confirm Password</FormLabel>
                 <FormControl>
                   <PasswordInput
                     placeholder="Confirm your password"
@@ -348,11 +345,9 @@ const StudentForm = () => {
                     isError={false}
                   />
                 </FormControl>
-                {errors["confirmPassword"] && (
-                  <FormMessage className="text-red-500 mt-1">
-                    {errors["confirmPassword"]?.message?.toString()}
-                  </FormMessage>
-                )}
+                <FormMessage className={cn("text-red-500 mt-1 h-1",!errors["confirmPassword"]? " opacity-0" :"" )} >
+                  {errors["confirmPassword"]?.message?.toString() || " "}
+                </FormMessage>
               </FormItem>
             )}
           />

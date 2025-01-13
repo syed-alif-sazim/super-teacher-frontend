@@ -3,10 +3,16 @@ import { EDegree, EEducationLevel, EGender, EMedium } from "@/shared/typedefs";
 
 export const StudentFormSchema = z
   .object({
-    firstName: z.string().min(1, "First Name is required"),
-    lastName: z.string().min(1, "Last Name is required"),
+    firstName: z.string().min(1, "First Name is required").transform((val) => val.trim()).refine(val => val.length > 0, {
+      message: "First Name is required",
+    }),
+    lastName: z.string().min(1, "Last Name is required").transform((val) => val.trim()).refine(val => val.length > 0, {
+      message: "Last Name is required",
+    }),    
     gender: z.enum([EGender.Male, EGender.Female]),
-    address: z.string().min(1, "Address is required"),
+    address: z.string().min(1, "Address is required").transform((val) => val.trim()).refine(val => val.length > 0, {
+      message: "Address is required",
+    }),
     phoneNumber: z
       .string()
       .regex(
@@ -15,7 +21,7 @@ export const StudentFormSchema = z
       ),
     educationLevel: z.enum([EEducationLevel.School, EEducationLevel.College, EEducationLevel.University]),
     medium: z.enum([EMedium.Bangla, EMedium.English]).optional(),
-    class: z.string().optional(),
+    grade: z.string().optional(),
     degree: z.enum([EDegree.Bachelors, EDegree.Masters]).optional(),
     degreeName: z.string().optional(),
     semesterYear: z.string().optional(),
@@ -27,7 +33,9 @@ export const StudentFormSchema = z
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).+$/,
       "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
     ),
-    confirmPassword: z.string().min(1, "Confirm Password is required"),
+    confirmPassword: z.string().min(1, "Confirm Password is required").transform((val) => val.trim()).refine(val => val.length > 0, {
+      message: "Confirm Password is required",
+    }),
   })
   .superRefine((data, ctx) => {
     if (data.password !== data.confirmPassword) {
@@ -46,7 +54,7 @@ export const StudentFormSchema = z
           path: ["medium"],
         });
       }
-      if (!data.class) {
+      if (!data.grade) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: "Class is required",

@@ -12,10 +12,10 @@ const CustomSelectInput: React.FC<TCustomSelectInputProps> = ({
   dropdownClassname,
   placeholder,
 }) => {
-  const textStyles = value ? "text-black" : "text-background-secondary-foreground/50";
+  const textStyles = value ? "text-foreground" : "text-background-secondary-foreground/50";
   const borderStyles = isError ? "border-destructive" : "";
 
-  const buttonClassnames = `hover:bg-white hover:text-black px-2 bg-inherit focus-visible:ring-1 ${textStyles} ${borderStyles} w-full rounded-md border border-input bg-background placeholder:text-muted-foreground ${buttonClassname}`;
+  const buttonClassnames = `px-2 bg-inherit focus-visible:ring-1 ${textStyles} ${borderStyles} w-full rounded-md border border-input bg-background placeholder:text-muted-foreground ${buttonClassname}`;
 
   const handleChange = (value: string) => {
     onChange(value);
@@ -37,3 +37,4 @@ const CustomSelectInput: React.FC<TCustomSelectInputProps> = ({
 };
 
 export default CustomSelectInput;
+

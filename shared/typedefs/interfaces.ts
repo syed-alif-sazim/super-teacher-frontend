@@ -7,8 +7,8 @@ interface IStudent {
 }
 
 interface ISchoolStudent extends IStudent {
-    medium: EMedium;
-    grade: ESchoolClass | ECollegeClass;
+    medium?: EMedium;
+    grade?: ESchoolClass | ECollegeClass;
 }
 
 interface IUniversityStudent extends IStudent {
