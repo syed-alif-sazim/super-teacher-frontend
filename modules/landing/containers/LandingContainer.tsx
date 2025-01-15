@@ -15,8 +15,8 @@ const LandingContainer = () => {
             <h1 className='welcome-landing-page'>WELCOME TO SUPERTEACHER</h1>
             <h2 className='slogan-landing-page'>Where learning and teaching come together!</h2>
             <div className='flex justify-center'>
-                <Button onClick={handleRegisterClick} className='btn-landing-page rounded-[5px] hover:bg-custom-green mr-3'>Register</Button>
-                <Button className='btn-landing-page rounded-[5px] hover:bg-custom-green mr-3'>Login</Button>
+                <Button onClick={handleRegisterClick} className='btn-landing-page rounded-[5px] bg-custom-blue text-custom-green hover:bg-custom-green mr-3'>Register</Button>
+                <Button className='btn-landing-page rounded-[5px] bg-custom-blue text-custom-green hover:bg-custom-green mr-3'>Login</Button>
             </div>
         </div>
         <RoleDialog isDialogOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />

@@ -8,7 +8,7 @@ export type TStudentForm= {
     phoneNumber: string;
     educationLevel: EEducationLevel;
     medium?: EMedium;
-    class?: ESchoolClass | ECollegeClass;
+    grade?: ESchoolClass | ECollegeClass;
     degree?: EDegree;
     degreeName?: string;
     semesterYear?: string;
