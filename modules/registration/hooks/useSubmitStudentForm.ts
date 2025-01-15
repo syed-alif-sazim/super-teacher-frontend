@@ -1,4 +1,4 @@
-import { TStudentForm } from "../components/StudentForm.types";
+import { TStudentForm } from "../components/StudentForm/StudentForm.types";
 import { useRegisterMutation } from "@/shared/redux/rtk-apis/auth/auth.api";
 import { IUser } from '@/shared/typedefs';
 import { ERoles} from "@/shared/typedefs"

@@ -22,10 +22,6 @@ const AppInitializer = ({ children }: PropsWithChildren) => {
       })
       .catch((err) => {
         const errorMessage = parseApiErrorMessage(err);
-
-        toast("Something went wrong", {
-          description: errorMessage,
-        });
       });
   }, [dispatch, getMe]);
 
