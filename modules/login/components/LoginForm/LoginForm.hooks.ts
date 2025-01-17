@@ -16,7 +16,7 @@ export const useLoginForm = () => {
   const form = useForm<TLoginFormFields>({
     defaultValues: loginFormInitialValues,
     resolver: loginFormValidationSchemaResolver,
-    reValidateMode: "onSubmit",
+    mode: "onChange",
   });
   const dispatch = useAppDispatch();
   const [login] = useLoginMutation();
@@ -25,7 +25,7 @@ export const useLoginForm = () => {
   const onSubmit = async (values: TLoginFormFields) => {
     try {
       const data = await login(values).unwrap();
-      setInLocalStorage(data.accessToken, ACCESS_TOKEN_LOCAL_STORAGE_KEY);
+      setInLocalStorage(ACCESS_TOKEN_LOCAL_STORAGE_KEY, data.accessToken);
       dispatch(setUser(data.user));
       await getMe().unwrap();
     } catch (error) {
