@@ -11,22 +11,25 @@ import { setInLocalStorage } from "@/shared/utils/localStorage";
 
 import { loginFormInitialValues, loginFormValidationSchemaResolver } from "./LoginForm.helpers";
 import { TLoginFormFields } from "./LoginForm.types";
+import { useRouter } from "next/router";
 
 export const useLoginForm = () => {
   const form = useForm<TLoginFormFields>({
     defaultValues: loginFormInitialValues,
     resolver: loginFormValidationSchemaResolver,
-    reValidateMode: "onSubmit",
+    mode: "onChange",
   });
   const dispatch = useAppDispatch();
   const [login] = useLoginMutation();
   const { getMe } = useSessionContext();
+  const router = useRouter();
 
   const onSubmit = async (values: TLoginFormFields) => {
     try {
       const data = await login(values).unwrap();
-      setInLocalStorage(data.accessToken, ACCESS_TOKEN_LOCAL_STORAGE_KEY);
+      setInLocalStorage(ACCESS_TOKEN_LOCAL_STORAGE_KEY, data.accessToken);
       dispatch(setUser(data.user));
+      await router.replace("/dashboard");
       await getMe().unwrap();
     } catch (error) {
       toast.error("Login failed", {

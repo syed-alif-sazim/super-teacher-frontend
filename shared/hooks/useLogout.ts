@@ -12,7 +12,6 @@ export const useLogout = () => {
   const logout = useCallback(() => {
     localStorage.clear();
     dispatch(clearUser());
-    router.reload();
   }, [router, dispatch]);
 
   return { logout };

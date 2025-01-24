@@ -18,7 +18,7 @@ import {EGender, EDegree, EEducationLevel, EMedium, ECollegeClass, ESchoolClass 
 import { PasswordInput } from "@/shared/components/Form/PasswordInput"
 import { StudentFormSchema } from "./StudentForm.schema"
 import { zodResolver } from "@hookform/resolvers/zod";
-import useSubmitStudentForm from "../hooks/useSubmitStudentForm"
+import useSubmitStudentForm from "../../hooks/useSubmitStudentForm"
 import { TStudentForm } from "./StudentForm.types"
 import { cn } from "@/lib/utils"
 

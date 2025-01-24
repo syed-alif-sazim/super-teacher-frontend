@@ -37,3 +37,29 @@ export enum ECollegeClass {
     Class12 = "12",
 }
   
+export enum EHighestEducationLevel{
+    Bachelors= 'Bachelors',
+    Masters = 'Masters',
+    PhD = 'PhD'
+}
+
+export enum ESubjects {
+    Physics = 'Physics',
+    Mathematics = 'Mathematics',
+    Chemistry = 'Chemistry',
+    Biology = 'Biology',
+    English = 'English',
+    Bangla = 'Bangla',
+    History = 'History',
+    Geography = 'Geography',
+}
+  
+export enum EDays {
+    Monday = 'Monday',
+    Tuesday = 'Tuesday',
+    Wednesday = 'Wednesday',
+    Thursday = 'Thursday',
+    Friday = 'Friday',
+    Saturday = 'Saturday',
+    Sunday = 'Sunday',
+}

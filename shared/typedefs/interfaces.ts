@@ -1,4 +1,4 @@
-import { ERoles, EGender, EDegree, EEducationLevel, EMedium, ECollegeClass, ESchoolClass } from "@/shared/typedefs"
+import { ERoles, EGender, EDegree, EEducationLevel, EMedium, ECollegeClass, ESchoolClass, EHighestEducationLevel } from "@/shared/typedefs"
 
 interface IStudent {
     address: string;
@@ -16,6 +16,13 @@ interface IUniversityStudent extends IStudent {
     degreeName?: string;
     semesterYear?: string;
 }
+
+interface ITeacher{
+    code: string;
+    majorSubject : string;
+    highestEducationLevel: EHighestEducationLevel;
+    subjectsToTeach: string[],
+}
 export interface IUser {
     firstName: string;
     lastName: string;
@@ -24,4 +31,5 @@ export interface IUser {
     password: string;
     role: ERoles;
     studentForm?: ISchoolStudent | IUniversityStudent;
+    teacherForm?: ITeacher
 }
