@@ -15,15 +15,27 @@ import { Input } from "@/shared/components/shadui/input";
 import { useLoginForm } from "./LoginForm.hooks";
 import { cn } from "@/lib/utils";
 import RoleDialog from "@/shared/components/RoleDialog";
+import ForgetPasswordDialog from "@/modules/forget-password/containers/ForgetPasswordDialog";
 
 const LoginForm = () => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [isRoleDialogOpen, setIsRoleDialogOpen] = useState(false)
+  const [isForgetDialogOpen, setIsForgetDialogOpen] = useState(false)
+  const [forgetPasswordStage, setforgetPasswordStage] = useState(1);
   const { form, onSubmit } = useLoginForm();
   const { formState: { errors } } = form
 
   const handleRegisterClick = () => {
-    setIsDialogOpen(true) 
+    setIsRoleDialogOpen(true) 
   }
+  const handleForgetPasswordClick = () => {
+    setIsForgetDialogOpen(true) 
+  }
+  const handleForgetPasswordClose = async () => {
+    setIsForgetDialogOpen(false);
+    setTimeout(() => {
+      setforgetPasswordStage(1); 
+    }, 300);
+  };
 
   return (
     <div className='w-[300px] sm:w-[400px]'>
@@ -68,7 +80,7 @@ const LoginForm = () => {
             <Button type="submit" variant="ghost" className="bg-custom-green text-white hover:bg-green-700 rounded-[5px]">
               Submit
             </Button>
-            <p className='mt-5'>
+            <p onClick={handleForgetPasswordClick}className='hover:underline cursor-pointer mt-5'>
               Forget Password
             </p>
             <p className="mt-3 flex items-center space-x-2">
@@ -80,7 +92,8 @@ const LoginForm = () => {
           </div>
         </form>
       </Form>
-      <RoleDialog isDialogOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
+      <RoleDialog isDialogOpen={isRoleDialogOpen} onClose={() => setIsRoleDialogOpen(false)} />
+      <ForgetPasswordDialog isDialogOpen={isForgetDialogOpen} stage={forgetPasswordStage} setStage={setforgetPasswordStage} onClose={handleForgetPasswordClose} />
     </div>
   );
 };

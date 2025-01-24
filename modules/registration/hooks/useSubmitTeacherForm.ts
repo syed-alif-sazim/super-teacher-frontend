@@ -33,9 +33,7 @@ const useSubmitTeacherForm = () => {
             if (response.message) {
                 toast.error(response.message); 
             }
-            console.log("Register response:", response);
         } catch (error: any) {
-            console.error("Error registering teacher:", error);
             if (error?.data?.message) {
                 toast.error(error.data.message);
             }
