@@ -7,7 +7,7 @@ export type TTeacherForm= {
     gender: EGender;
     majorSubject : string;
     highestEducationLevel: EHighestEducationLevel;
-    subjects: Array<string>,
+    subjects: string[],
     email: string;
     password: string;
     confirmPassword: string;

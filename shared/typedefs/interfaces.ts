@@ -21,7 +21,7 @@ interface ITeacher{
     code: string;
     majorSubject : string;
     highestEducationLevel: EHighestEducationLevel;
-    subjectsToTeach: Array<string>,
+    subjectsToTeach: string[],
 }
 export interface IUser {
     firstName: string;

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@/shared/components/shadui'
-import RoleDialog from '../../../shared/components/RoleDialog'
+import RoleDialog from '@/shared/components/RoleDialog'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 

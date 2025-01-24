@@ -54,3 +54,12 @@ export enum ESubjects {
     Geography = 'Geography',
 }
   
+export enum EDays {
+    Monday = 'Monday',
+    Tuesday = 'Tuesday',
+    Wednesday = 'Wednesday',
+    Thursday = 'Thursday',
+    Friday = 'Friday',
+    Saturday = 'Saturday',
+    Sunday = 'Sunday',
+}
