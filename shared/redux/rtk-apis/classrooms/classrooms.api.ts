@@ -1,7 +1,5 @@
-// import { IUser, TApiResponse } from "@/shared/typedefs";
 import { TApiResponse } from "@/shared/typedefs";
 import projectApi from "../api.config";
-// import { TLoginRequestFields, TLoginResponse } from "./auth.types";
 
 import { TClassroom } from "./classroom.types";
 
@@ -13,10 +11,16 @@ const classroomsApi = projectApi.injectEndpoints({
           method: "POST",
           body: newClassroom,
         }),
+        invalidatesTags: ["Classrooms"],
         transformResponse: (response: TApiResponse<TClassroom>) => response.data,
       }),
+    getClassrooms: builder.query<TClassroom[], void>({
+      query: () => "classrooms",
+      providesTags: ["Classrooms"],
+      transformResponse: (response: TApiResponse<TClassroom[]>) => response.data,
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useCreateClassroomMutation } = classroomsApi;
+export const { useCreateClassroomMutation, useGetClassroomsQuery } = classroomsApi;
