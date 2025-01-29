@@ -4,10 +4,18 @@ import { TClassroom } from '@/shared/redux/rtk-apis/classrooms/classroom.types'
 import { FaCalendarAlt, FaClock, FaUsers, FaEllipsisV } from 'react-icons/fa'
 import { v4 as uuidv4 } from 'uuid';
 import { getRandomColor } from './ClassroomCard.helpers';
+import { useRouter } from 'next/router';
 
-const ClassroomCard = ({ classroom }: { classroom: TClassroom }) => {
+const ClassroomCard = ({ classroom}: { classroom: TClassroom }) => {
+  const router = useRouter();
+  const handleClassroomClick =(id:number)=>{
+    console.log('hey')
+    router.push(`/classroom/${id}`);
+  }
+
   return (
-    <Card className="w-[450px] bg-white rounded-lg mt-2">
+    <div onClick={()=>handleClassroomClick(classroom.id)}>
+    <Card className="w-[450px] bg-white rounded-lg mt-2" >
       <CardHeader className={`${getRandomColor()} rounded-t-lg`}>
         <div className="flex justify-between w-full">
           <div>
@@ -35,6 +43,7 @@ const ClassroomCard = ({ classroom }: { classroom: TClassroom }) => {
         <span className='text-gray-500'>ID: {uuidv4()}</span>
       </CardFooter>
     </Card>
+    </div>
   )
 }
 
