@@ -21,6 +21,7 @@ const config = {
     extend: {
       colors: {
         'custom-green' :"#25ac7a",
+        'custom-green-hover': '#1e8c63',
         'custom-blue':'#151b32',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
