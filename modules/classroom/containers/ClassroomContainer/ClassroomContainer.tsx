@@ -2,6 +2,7 @@ import NavbarContainer from '@/shared/components/NavbarContainer/NavbarContainer
 import React,  { useState } from 'react'
 import { cn } from '@/lib/utils';
 import PeopleSection from '../../components/PeopleSection/PeopleSection';
+import ClassworkSection from '../../components/ClassworkSection/ClassworkSection';
 
 const ClassroomContainer = ({ classroomId }: { classroomId: string }) => {
   const [activeTab, setActiveTab] = useState("Stream");
@@ -30,7 +31,7 @@ const ClassroomContainer = ({ classroomId }: { classroomId: string }) => {
         </div>
         <div className="p-6">
           {activeTab === "Stream" && <></>}
-          {activeTab === "Classwork" && <></>}
+          {activeTab === "Classwork" && <ClassworkSection  classroomId={classroomId}/>}
           {activeTab === "People" && <PeopleSection classroomId={classroomId}/>}
         </div>
       </div>
