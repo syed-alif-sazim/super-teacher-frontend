@@ -1,7 +1,6 @@
 import { TApiResponse } from "@/shared/typedefs";
 import projectApi from "../api.config";
-
-import { TClassroom } from "./classroom.types";
+import { TClassroom, TClassroomTeacher, TEnrolledStudent, TUnenrolledStudent } from "./classroom.types";
 
 const classroomsApi = projectApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -19,8 +18,40 @@ const classroomsApi = projectApi.injectEndpoints({
       providesTags: ["Classrooms"],
       transformResponse: (response: TApiResponse<TClassroom[]>) => response.data,
     }),
+    getClassroomTeacher: builder.query({
+      query: (id) => `classrooms/${id}/teacher`,
+      transformResponse: (response: TApiResponse<TClassroomTeacher>) => response.data,
+    }),
+    getEnrolledStudents: builder.query({
+      query: (id) => `classrooms/${id}/enrolled-students`,
+      providesTags: ["EnrolledStudents"],
+      transformResponse: (response: TApiResponse<TEnrolledStudent[]>) => response.data,
+    }),
+    getUnenrolledStudents: builder.query({
+      query: (id) => `classrooms/${id}/unenrolled-students`,
+      providesTags:['UnenrolledStudents'],
+      transformResponse: (response: TApiResponse<TUnenrolledStudent[]>) => response.data,
+    }),
+    addStudents: builder.mutation({
+      query: ({id, students}) => ({
+        url: `classrooms/${id}/students`,
+        method: "POST",
+        body: students,
+      }),
+      invalidatesTags: ['UnenrolledStudents', 'EnrolledStudents']
+    }),
+    removeStudent: builder.mutation({
+      query: ({id, student}) => ({
+        url: `classrooms/${id}/students`,
+        method: "DELETE",
+        body: student,
+      }),
+      invalidatesTags: ['UnenrolledStudents', 'EnrolledStudents']
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useCreateClassroomMutation, useGetClassroomsQuery } = classroomsApi;
+export const { useCreateClassroomMutation, useGetClassroomsQuery, useAddStudentsMutation,
+   useGetUnenrolledStudentsQuery, useGetEnrolledStudentsQuery, useGetClassroomTeacherQuery 
+  ,useRemoveStudentMutation} = classroomsApi;

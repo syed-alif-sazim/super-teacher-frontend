@@ -1,16 +1,11 @@
-import Navbar from '@/shared/components/Navbar'
-import React from 'react'
-import CreateClassroomDialog from '../components/CreateClassroomDialog/CreateClassroomDialog'
-import { useState } from 'react'
 import ClassroomsContainer from './ClassroomsContainer'
+import NavbarContainer from '@/shared/components/NavbarContainer/NavbarContainer'
 
 const DashboardContainer = () => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   return (
     <div>
-      <Navbar setIsDialogOpen={setIsDialogOpen}/>
-      <CreateClassroomDialog  isDialogOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)}/>
+      <NavbarContainer/>
       <ClassroomsContainer/>
     </div>
   )
